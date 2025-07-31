@@ -62,7 +62,6 @@
       width: 100%;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     .group-preview {
       display: flex;
@@ -80,13 +79,8 @@
     }
     .group-preview h3 {
       font-size: 1.5rem;
-      margin-bottom: 0.25rem;
       font-weight: 600;
       color: var(--accent);
-    }
-    .group-preview p {
-      font-size: 0.9rem;
-      color: var(--mute);
     }
     .card h2 {
       font-size: 1.75rem;
@@ -158,18 +152,14 @@
 
   <main>
     <div class="card">
-      <div id="group-preview" class="group-preview">
-        <div class="group-icon" style="background:#333;"></div>
-        <div>
-          <h3>Loading…</h3>
-          <p>Fetching group info</p>
-        </div>
+      <div class="group-preview">
+        <img src="https://tr.rbxcdn.com/180DAY-5157bcc9a11a486338cd3d095cac87cb/150/150/Image/Webp/noFilter" alt="Dorcus Digital emblem" class="group-icon">
+        <h3>Dorcus Digital</h3>
       </div>
       <h2>Deadline: August 31, 2025</h2>
       <p>We, the community, DEMAND that <strong>Dorcus Digital</strong> change back to <strong>Downy Press</strong> by the deadline—otherwise, TC2 will be removed from Roblox.</p>
       <div id="countdown" class="countdown">Loading…</div>
-      <!-- UPDATED LINK -->
-      <a id="visit-button" href="https://www.roblox.com/communities/33684947/Dorcus-Digital#!/about" class="button" target="_blank">
+      <a href="https://www.roblox.com/communities/33684947/Dorcus-Digital#!/about" class="button" target="_blank">
         Visit Community Page
       </a>
     </div>
@@ -198,29 +188,6 @@
     }
     const cdTimer = setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    // Fetch group info via roproxy
-    const groupId = 33684947;
-    fetch(`https://groups.roproxy.com/v1/groups/${groupId}`)
-      .then(res => res.json())
-      .then(data => {
-        const preview = document.getElementById('group-preview');
-        preview.innerHTML = `
-          <img src="${data.emblemUrl}?width=64&height=64" alt="${data.name} emblem" class="group-icon">
-          <div>
-            <h3>${data.name}</h3>
-            <p>${data.memberCount.toLocaleString()} members</p>
-          </div>
-        `;
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('group-preview').innerHTML = `
-          <div style="color:var(--mute); font-weight:300;">
-            Failed to load group info
-          </div>
-        `;
-      });
   </script>
 </body>
 </html>
