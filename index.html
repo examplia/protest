@@ -159,7 +159,6 @@
   <main>
     <div class="card">
       <div id="group-preview" class="group-preview">
-        <!-- loading skeleton -->
         <div class="group-icon" style="background:#333;"></div>
         <div>
           <h3>Loading…</h3>
@@ -169,7 +168,7 @@
       <h2>Deadline: August 31, 2025</h2>
       <p>We, the community, DEMAND that <strong>Dorcus Digital</strong> change back to <strong>Downy Press</strong> by the deadline—otherwise, TC2 will be removed from Roblox.</p>
       <div id="countdown" class="countdown">Loading…</div>
-      <a id="visit-button" href="#" class="button" target="_blank">Visit Group</a>
+      <a id="visit-button" href="https://www.roblox.com/groups/33684947/" class="button" target="_blank">Visit Group</a>
     </div>
   </main>
 
@@ -197,28 +196,28 @@
     const cdTimer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Fetch and display Roblox group info
-    (function(){
-      const groupId = 33684947;  // ← replace with your Roblox group ID, e.g. 1234567
-      fetch(`https://groups.roblox.com/v1/groups/${groupId}`)
-        .then(res => res.json())
-        .then(data => {
-          const preview = document.getElementById('group-preview');
-          preview.innerHTML = `
-            <img src="${data.emblemUrl}" alt="${data.name} emblem" class="group-icon">
-            <div>
-              <h3>${data.name}</h3>
-              <p>${data.memberCount.toLocaleString()} members</p>
-            </div>
-          `;
-          const btn = document.getElementById('visit-button');
-          btn.href = `https://www.roblox.com/groups/${groupId}/`;
-        })
-        .catch(() => {
-          const preview = document.getElementById('group-preview');
-          preview.innerHTML = '<div style="color:var(--mute)">Failed to load group info</div>';
-        });
-    })();
+    // Fetch group info via roproxy
+    const groupId = 33684947;
+    fetch(`https://groups.roproxy.com/v1/groups/${groupId}`)
+      .then(res => res.json())
+      .then(data => {
+        const preview = document.getElementById('group-preview');
+        preview.innerHTML = `
+          <img src="${data.emblemUrl}?width=64&height=64" alt="${data.name} emblem" class="group-icon">
+          <div>
+            <h3>${data.name}</h3>
+            <p>${data.memberCount.toLocaleString()} members</p>
+          </div>
+        `;
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('group-preview').innerHTML = `
+          <div style="color:var(--mute); font-weight:300;">
+            Failed to load group info
+          </div>
+        `;
+      });
   </script>
 </body>
 </html>
