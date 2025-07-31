@@ -1,74 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Bring Back Downy Press!</title>
   <!-- Google Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --brand-red: #e74c3c;
-      --dark-bg: #1e1e1e;
-      --light-bg: #fafafa;
-      --text-main: #333;
-      --text-inverse: #fff;
-      --radius: 8px;
+      --bg: #0d0d0d;
+      --card-bg: #1a1a1a;
+      --accent: #e74c3c;
+      --text: #e0e0e0;
+      --mute: #777;
+      --radius: 12px;
       --transition: 0.3s ease;
+      --shadow: rgba(0, 0, 0, 0.7);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      height: 100%;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
       font-family: 'Poppins', sans-serif;
-      background: var(--light-bg);
-      color: var(--text-main);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
-
     header {
-      background: var(--brand-red);
-      color: var(--text-inverse);
       text-align: center;
       padding: 3rem 1rem;
+      background: linear-gradient(135deg, #111, #1e1e1e);
       position: relative;
       overflow: hidden;
     }
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
-      animation: pulse 8s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1) translate(0,0); opacity: 1; }
-      50%     { transform: scale(1.3) translate(-10%, -10%); opacity: 0.7; }
-    }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      z-index: 1;
-      position: relative;
+      color: var(--accent);
+      text-shadow: 0 2px 4px var(--shadow);
     }
     header p {
       margin-top: 0.5rem;
       font-weight: 300;
-      z-index: 1;
-      position: relative;
+      color: var(--mute);
     }
-
     main {
       flex: 1;
       display: flex;
@@ -76,84 +53,98 @@
       justify-content: center;
       padding: 2rem;
     }
-
     .card {
-      background: var(--dark-bg);
-      color: var(--text-inverse);
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 40px var(--shadow);
+      padding: 2rem;
       max-width: 700px;
       width: 100%;
-      padding: 2rem;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent 80%);
+    .group-preview {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .group-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px var(--shadow);
+      object-fit: cover;
+    }
+    .group-preview h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .group-preview p {
+      font-size: 0.9rem;
+      color: var(--mute);
     }
     .card h2 {
       font-size: 1.75rem;
       margin-bottom: 1rem;
-      font-weight: 600;
+      color: var(--accent);
     }
     .card p {
+      font-size: 1rem;
       line-height: 1.6;
       margin-bottom: 1.5rem;
+      color: var(--text);
       font-weight: 300;
     }
-
     .countdown {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 500;
       margin-bottom: 1.5rem;
+      color: var(--text);
     }
-
     .button {
       display: inline-block;
       padding: 0.75rem 2rem;
-      background: transparent;
-      border: 2px solid var(--brand-red);
-      color: var(--brand-red);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
       text-decoration: none;
       text-transform: uppercase;
       font-weight: 600;
-      border-radius: var(--radius);
-      transition: var(--transition);
+      color: var(--accent);
       position: relative;
       overflow: hidden;
+      transition: var(--transition);
     }
     .button::before {
       content: '';
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: var(--brand-red);
-      transform: translateX(-100%);
-      z-index: -1;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
       transition: var(--transition);
+      z-index: -1;
     }
     .button:hover {
-      color: var(--text-inverse);
+      color: var(--bg);
     }
     .button:hover::before {
-      transform: translateX(0);
+      transform: scaleX(1);
     }
-
     footer {
       text-align: center;
       padding: 1rem 0;
       font-size: 0.9rem;
-      color: #666;
-      background: #f0f0f0;
+      color: var(--mute);
+      background: #111;
     }
-
     @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
+      header h1 { font-size: 2.25rem; }
       .card { padding: 1.5rem; }
       .button { padding: 0.6rem 1.5rem; }
     }
@@ -167,38 +158,67 @@
 
   <main>
     <div class="card">
+      <div id="group-preview" class="group-preview">
+        <!-- loading skeleton -->
+        <div class="group-icon" style="background:#333;"></div>
+        <div>
+          <h3>Loading…</h3>
+          <p>Fetching group info</p>
+        </div>
+      </div>
       <h2>Deadline: August 31, 2025</h2>
-      <p>We, the community, DEMAND that <strong>Dorcus Digital</strong> change their group name back to <strong>Downy Press</strong> by the deadline—otherwise, TC2 will be removed from Roblox.</p>
-      <div class="countdown" id="countdown">Loading…</div>
-      <a href="https://www.roblox.com/groups/33684947/Dorcus-Digital" class="button" target="_blank">
-        Visit Dorcus Digital
-      </a>
+      <p>We, the community, DEMAND that <strong>Dorcus Digital</strong> change back to <strong>Downy Press</strong> by the deadline—otherwise, TC2 will be removed from Roblox.</p>
+      <div id="countdown" class="countdown">Loading…</div>
+      <a id="visit-button" href="#" class="button" target="_blank">Visit Group</a>
     </div>
   </main>
 
   <footer>
-    &copy; 2025 Downy Press Protest | hosted at downy.press
+    &copy; 2025 Downy Press Protest | downy.press
   </footer>
 
   <script>
+    // Countdown timer
     const deadline = new Date('2025-08-31T00:00:00');
-    const el = document.getElementById('countdown');
-    function tick() {
-      const now = new Date();
+    const cdEl = document.getElementById('countdown');
+    function updateCountdown() {
+      const now = Date.now();
       const diff = deadline - now;
       if (diff <= 0) {
-        el.textContent = 'Deadline reached! 📢';
-        clearInterval(timer);
-        return;
+        cdEl.textContent = 'Deadline reached! 📢';
+        return clearInterval(cdTimer);
       }
-      const d = Math.floor(diff / 1000/60/60/24);
-      const h = Math.floor(diff/1000/60/60 % 24);
-      const m = Math.floor(diff/1000/60 % 60);
-      const s = Math.floor(diff/1000 % 60);
-      el.textContent = `${d}d ${h}h ${m}m ${s}s left`;
+      const days = Math.floor(diff / 86400000);
+      const hrs  = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      const secs = Math.floor((diff % 60000) / 1000);
+      cdEl.textContent = `${days}d ${hrs}h ${mins}m ${secs}s left`;
     }
-    const timer = setInterval(tick, 1000);
-    tick();
+    const cdTimer = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Fetch and display Roblox group info
+    (function(){
+      const groupId = 33684947;  // ← replace with your Roblox group ID, e.g. 1234567
+      fetch(`https://groups.roblox.com/v1/groups/${groupId}`)
+        .then(res => res.json())
+        .then(data => {
+          const preview = document.getElementById('group-preview');
+          preview.innerHTML = `
+            <img src="${data.emblemUrl}" alt="${data.name} emblem" class="group-icon">
+            <div>
+              <h3>${data.name}</h3>
+              <p>${data.memberCount.toLocaleString()} members</p>
+            </div>
+          `;
+          const btn = document.getElementById('visit-button');
+          btn.href = `https://www.roblox.com/groups/${groupId}/`;
+        })
+        .catch(() => {
+          const preview = document.getElementById('group-preview');
+          preview.innerHTML = '<div style="color:var(--mute)">Failed to load group info</div>';
+        });
+    })();
   </script>
 </body>
 </html>
